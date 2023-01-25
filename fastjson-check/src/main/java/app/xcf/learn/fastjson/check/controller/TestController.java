@@ -2,6 +2,7 @@ package app.xcf.learn.fastjson.check.controller;
 
 import app.xcf.learn.fastjson.check.model.dos.BfeeTypeMappingDO;
 import app.xcf.learn.fastjson.check.util.BeanCheckUtil;
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,9 @@ public class TestController {
         bfeeTypeMappingDO.setFeeTypeName("setFeeTypeName");
         bfeeTypeMappingDO.setClassRange("setClassRange");
 
+        String s1 = JSONObject.toJSONString(bfeeTypeMappingDO);
+        Object o = JSONObject.parseObject(s1, Object.class);
+
 
         Set<ConstraintViolation<BfeeTypeMappingDO>> validate = validator.validate(bfeeTypeMappingDO);
 
@@ -48,7 +52,8 @@ public class TestController {
 //                System.out.println("val.getInvalidValue()" + val.getInvalidValue());
 //            });
 //        }
-        BeanCheckUtil.validateFast(bfeeTypeMappingDO);
+        //BeanCheckUtil.validateFast(bfeeTypeMappingDO);
+        BeanCheckUtil.validateFast(o);
 
 
         String s = JSONObject.toJSONString(bfeeTypeMappingDO);

@@ -9,5 +9,7 @@ package app.xcf.learn.dp.creating;
  **/
 public class a001_simpleFactory {
 
+    public static void main(String[] args) {
+    }
 
 }
